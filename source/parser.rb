@@ -1,4 +1,4 @@
-include 'csv'
+require 'csv'
 module CardParser
   def self.get_cards_from_file(filename)
     deck = []
