@@ -29,4 +29,8 @@ class Game
     guess == @unseen_cards[0].term
   end
 
+  def game_over?
+    @unseen_cards.empty?
+  end
+
 end
