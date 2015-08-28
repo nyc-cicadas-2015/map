@@ -32,10 +32,4 @@ describe Game do
       expect(my_game.pull_definition).to eq("To create a second name for the variable or method.")
     end
   end
-
-  # describe '#game_over?' do
-  #   it "returns true if deck is empty" do
-  #     expect(my_game.game_over?).to
-  #   end
-  # end
 end
