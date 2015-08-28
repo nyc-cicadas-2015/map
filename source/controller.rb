@@ -1,27 +1,52 @@
-require 'colorize'
 require_relative 'model'
-filename = "flashcard_test.txt"
-game = Game.new(CardParser.get_cards_from_file(filename))
+require_relative 'view'
 
-puts "Welcome to the best flashcard game ever!"
+class Controller
 
-until game.game_over?
-  puts "Definition".yellow
-  puts game.pull_definition
-  puts "Please type your answer".blue
-
-  3.times do
-    guess = gets.chomp
-    if game.checker?(guess)
-      puts "Woo hoo! You are correct!".green
-      break
-    else
-      puts "Boo hoo! You are wrong.".red
-      # prompt again
-    end
+  def initialize(args = {})
+    @model = args[:model]
+    @view = args[:view]
   end
 
-  game.move_card
+  def ask_question
+    @view.definition_prompt
+    puts @model.pull_definition
+    @view.answer_prompt
+  end
+
+  def run
+    @view.welcome
+    until @model.game_over?
+      ask_question
+
+      3.times do
+
+        guess = gets.chomp
+
+        if @model.checker?(guess)
+          @view.correct_response
+          break
+        else
+          @view.incorrect_response
+        end
+      end
+      @model.move_card
+    end
+    @view.goodbye
+  end
 end
 
-puts "Thanks for playing."
+# user_deck = ARGV[0]
+# filename = user_deck ? user_deck : 'flashcard_test.txt'
+# if ARGV[0] != nil
+#   filename = 'flashcard_test.txt'
+# else
+#   filename = ARGV[0]
+# end
+filename = 'flashcard_test.txt'
+model = Game.new(CardParser.get_cards_from_file(filename))
+view = FlashcardView.new
+
+Controller.new({model: model, view: view}).run
+  #require 'pry'; binding.pry
+
