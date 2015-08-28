@@ -1,22 +1,24 @@
-class Game
-  attr_reader :deck
-  def initialize(deck)
-    @deck = deck
+require_relative 'model'
+
+game = Game.new(CardParser.get_cards_from_file("flashcard.txt"))
+
+puts "Welcome to the best flashcard game ever!"
+
+until game.game_over?
+  puts game.pull_definition
+  puts "Provide a term ..blah blah blah"
+
+  3.times do
+    guess = gets.chomp
+    if game.checker?(guess)
+      puts "Woo hoo! You are correct!"
+      break
+    else
+      puts "Boo hoo! You are wrong."
+    end
   end
 
-  def pull_card
-  end
-
-  def game_over?
-  end
-
-  def track_guesses
-  end
-
-  def correct?
-  end
-
+  game.move_card
 end
 
-new_game = Game.new(my_deck)
-new_game.pull_card
+puts "Thanks for playing."
