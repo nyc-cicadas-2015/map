@@ -16,7 +16,6 @@
 10. Repeat steps 4 to 9 until all definitions are exhausted
 11. Display "GAME OVER"
 
-
 ### Classes/Modules
 
 #### Card
@@ -50,4 +49,7 @@ The CardLoader will
 	- parse each row of data
 	- return Card objects
 
+#### Awesome MVC Diagram
+
+![Our awesome MVC](initial_mvc.jpg)
 
