@@ -77,4 +77,15 @@ describe Game do
     end
   end
 
+  describe "#move_card" do
+    it "delete card at poistion 0 from unseen_cards" do
+      expect{other_game.move_card}.to change{other_game.unseen_cards.length}.from(1).to(0)
+    end
+
+     it "push current card into seen_cards" do
+      expect{other_game.move_card}.to change{other_game.seen_cards.length}.from(0).to(1)
+         # require 'pry'; binding.pry
+    end
+  end
+
 end

@@ -18,19 +18,23 @@ class Game
   end
 
   def pull_definition
-    @unseen_cards[0].definition
+    unseen_cards[0].definition
   end
 
   def pull_term
-    @unseen_cards[0].term
+    unseen_cards[0].term
   end
 
   def checker?(guess)
-    guess == @unseen_cards[0].term
+    guess == unseen_cards[0].term
   end
 
   def game_over?
-    @unseen_cards.empty?
+    unseen_cards.empty?
+  end
+
+  def move_card
+    seen_cards << unseen_cards.shift
   end
 
 end
