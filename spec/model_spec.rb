@@ -27,7 +27,6 @@ describe Game do
         expect(new_game.unseen_cards).to be_an(Array)
       end
 
-
     it "the array contains card objects" do
         expect(new_game.unseen_cards[0]).to be_a(Card)
       end
@@ -41,5 +40,24 @@ describe Game do
       end
   end
 
+  describe "#pull_definition" do
+    it "returns card definition as a string" do
+        expect(new_game.pull_definition).to be_a(String)
+      end
+
+    it "and returns the definition of the first card object" do
+        expect(new_game.pull_definition).to eq("To create a second name for the variable or method.")
+      end
+  end
+
+  describe "#pull_term" do
+    it "returns card term as a string" do
+        expect(new_game.pull_term).to be_a(String)
+      end
+
+    it "and returns the term of the first card object" do
+        expect(new_game.pull_term).to eq("alias")
+      end
+  end
 
 end

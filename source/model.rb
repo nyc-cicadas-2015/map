@@ -17,4 +17,12 @@ class Game
     @seen_cards = []
   end
 
+  def pull_definition
+    @unseen_cards[0].definition
+  end
+
+  def pull_term
+    @unseen_cards[0].term
+  end
+
 end
