@@ -20,7 +20,11 @@ describe Game do
                Card.new(term: "break", definition: "Gives an unconditional termination to a code block, and is usually placed with an argument."),
                Card.new(term: "case", definition: "starts a case statement; this block of code will output a result and end when it's terms are fulfilled, which are defined with when or else.")]}
 
+  let (:other_cards) {[Card.new(term: "class", definition: "Opens a class definition block, which can later be reopened and added to with variables and even functions.")]}
+
   let (:new_game) {Game.new(cards)}
+
+  let (:other_game) {Game.new(other_cards)}
 
   describe "#initialize" do
     it "instantiate a new game class with an array" do
@@ -65,6 +69,23 @@ describe Game do
     it "returns a boolean" do
         expect(new_game.checker?(guess)).to eq(true)
       end
+  end
+
+  describe "#game_over?" do
+    it "tests if the all of the questions have been asked by testing if the unseen_cards array is empty" do
+      expect(other_game.game_over?).to eq(false)
+    end
+  end
+
+  describe "#move_card" do
+    it "delete card at poistion 0 from unseen_cards" do
+      expect{other_game.move_card}.to change{other_game.unseen_cards.length}.from(1).to(0)
+    end
+
+     it "push current card into seen_cards" do
+      expect{other_game.move_card}.to change{other_game.seen_cards.length}.from(0).to(1)
+         # require 'pry'; binding.pry
+    end
   end
 
 end
