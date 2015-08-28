@@ -9,10 +9,24 @@ class Card
 end
 
 
-class Deck
-  attr_reader :deck
-  def initialize(deck=[])
-    @deck = deck
+class Game
+  attr_reader :unseen_cards, :seen_cards
+
+  def initialize(deck)
+    @unseen_cards = deck
+    @seen_cards = []
+  end
+
+  def pull_definition
+    @unseen_cards[0].definition
+  end
+
+  def pull_term
+    @unseen_cards[0].term
+  end
+
+  def checker?(guess)
+    guess == @unseen_cards[0].term
   end
 
 end
