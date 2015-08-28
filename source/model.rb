@@ -6,5 +6,13 @@ class Card
     @term = args[:term]
     @definition = args[:definition]
   end
+end
+
+
+class Deck
+  attr_reader :deck
+  def initialize(deck=[])
+    @deck = deck
+  end
 
 end
