@@ -60,4 +60,11 @@ describe Game do
       end
   end
 
+  let(:guess){"alias"}
+  describe "#checker?" do
+    it "returns a boolean" do
+        expect(new_game.checker?(guess)).to eq(true)
+      end
+  end
+
 end

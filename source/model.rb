@@ -25,4 +25,8 @@ class Game
     @unseen_cards[0].term
   end
 
+  def checker?(guess)
+    guess == @unseen_cards[0].term
+  end
+
 end
