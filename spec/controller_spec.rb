@@ -2,7 +2,7 @@ require_relative '../source/controller.rb'
 require_relative '../source/model.rb'
 
 describe Controller do
-  let(:model){Game.new(CardParser.get_cards_from_file('flashcard.txt'))}
+  let(:model){Game.new(CardParser.get_cards_from_file('flashcard_test.txt'))}
   let(:view){FlashcardView.new}
   let(:test){Controller.new({:model=>model, :view=>view})}
   describe '#initialize' do
