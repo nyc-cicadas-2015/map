@@ -17,10 +17,14 @@ class FlashcardView
   end
 
   def incorrect_response
-    puts "Boo hoo! You are wrong.".red
+    puts "Boo hoo! You are wrong".red
   end
 
   def goodbye
     puts "Thanks for playing."
+  end
+
+  def review
+    puts "Would you like to attempt the ones you got wrong again?"
   end
 end

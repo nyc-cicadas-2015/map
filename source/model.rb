@@ -10,11 +10,12 @@ end
 
 
 class Game
-  attr_reader :unseen_cards, :seen_cards
+  attr_reader :unseen_cards, :correct_cards, :incorrect_cards
 
   def initialize(deck)
     @unseen_cards = deck
-    @seen_cards = []
+    @correct_cards = []
+    @incorrect_cards = []
   end
 
   def pull_definition
@@ -33,8 +34,16 @@ class Game
     unseen_cards.empty?
   end
 
-  def move_card
-    seen_cards << unseen_cards.shift
+  def reset_cards
+    @unseen_cards = @incorrect_cards
+  end
+
+  def move_correct_cards
+    correct_cards << unseen_cards.shift
+  end
+
+  def move_incorrect_cards
+    incorrect_cards << unseen_cards.shift
   end
 
 end
