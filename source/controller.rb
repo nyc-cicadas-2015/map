@@ -2,51 +2,36 @@ require_relative 'model'
 require_relative 'view'
 
 class Controller
-
+  attr_reader :model, :view
   def initialize(args = {})
     @model = args[:model]
     @view = args[:view]
   end
 
-  def ask_question
-    @view.definition_prompt
-    puts @model.pull_definition
-    @view.answer_prompt
-  end
-
   def run
-    @view.welcome
-    until @model.game_over?
-      ask_question
-
+    view.welcome
+    until model.game_over?
+      puts model.pull_definition
+      view.user_text
       3.times do
-
-        guess = gets.chomp
-
-        if @model.checker?(guess)
-          @view.correct_response
+        guess = $stdin.gets.chomp
+        if model.checker?(guess)
+          view.correct_response
           break
         else
-          @view.incorrect_response
+          view.incorrect_response
         end
       end
-      @model.move_card
+      model.move_card
     end
-    @view.goodbye
+    view.goodbye
   end
 end
 
-# user_deck = ARGV[0]
-# filename = user_deck ? user_deck : 'flashcard_test.txt'
-# if ARGV[0] != nil
-#   filename = 'flashcard_test.txt'
-# else
-#   filename = ARGV[0]
-# end
-filename = 'flashcard_test.txt'
+ARGV.empty? ? filename = './flashcard_decks/flashcard.txt' : filename = './flashcard_decks/' + ARGV[0]
 model = Game.new(CardParser.get_cards_from_file(filename))
 view = FlashcardView.new
 
 Controller.new({model: model, view: view}).run
-  #require 'pry'; binding.pry
+
 

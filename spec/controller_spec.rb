@@ -1,35 +1,32 @@
 require_relative '../source/controller.rb'
-let(:card1) {Card.new({term: "alias", definition: "To create a second name for the variable or method."})}
-let(:card2) {Card.new({term: "and", definition: "A command that appends two or more objects together."})}
-let(:my_game) {Game.new([card1, card2])}
+require_relative '../source/model.rb'
 
-describe Game do
-
+describe Controller do
+  let(:model){Game.new(CardParser.get_cards_from_file('flashcard_test.txt'))}
+  let(:view){FlashcardView.new}
+  let(:test){Controller.new({:model=>model, :view=>view})}
   describe '#initialize' do
-    it 'should contain an array for unseen cards' do
-      expect(my_game.unseen_deck).to be_a_kind_of(Array)
+    it 'should instantiate a new Game class' do
+      expect(model).to be_a(Game)
     end
 
-    it 'should contain an array of card objects' do
-      expect(my_game.unseen_deck.first).to be_a_kind_of(Card)
+    it 'should instantiate a new View class' do
+    expect(view).to be_a(FlashcardView)
     end
 
-    it 'should contain an array for seen cards' do
-      expect(my_game.seen_deck).to be_a_kind_of(Array)
-    end
-
-    it 'should initialize the seen cards array as empty' do
-      expect(my_game.seen_deck).to be_empty
+    it 'should instantiate a new Controller class' do
+    expect(test).to be_a(Controller)
     end
   end
 
-  describe '#pull_definition' do
-    it 'should return definition as a string' do
-      expect(my_game.pull_definition).to be_a_kind_of(String)
+  describe '#run' do
+    it 'should display next question if user is correct' do
+      expect{test.run}.to change{model.seen_cards.length}
     end
 
-    it 'should return the first card in the deck' do
-      expect(my_game.pull_definition).to eq("To create a second name for the variable or method.")
+    it 'should not display next question if user is incorrect' do
+      guess = "happy"
+      expect(model.checker?(guess)).to eq(false)
     end
   end
 end
