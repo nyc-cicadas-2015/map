@@ -2,15 +2,14 @@ require 'colorize'
 
 class FlashcardView
   def welcome
-    puts "Welcome to the best flashcard game ever!"
+    system("clear")
+    puts "*".red * 80
+    puts "Welcome to the best flashcard game ever!".red
+    puts "*".red * 80
   end
 
-  def definition_prompt
-    puts "Definition:".yellow
-  end
-
-  def answer_prompt
-    puts "Please type your answer".blue
+  def user_text
+    puts "Please type your answer: ".yellow
   end
 
   def correct_response
