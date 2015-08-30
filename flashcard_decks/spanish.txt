@@ -1,0 +1,10 @@
+green,verde
+red,rojo(a)
+brown,marrón
+orange,naranjo(a)
+white,blanco(a)
+black,negro(a)
+blue,azul
+yellow,amarillo
+pink,rosa
+purple,morado(a)
