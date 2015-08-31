@@ -23,3 +23,4 @@ acquit,Pronounce not guilty of criminal charges
 acrimonious,Marked by strong resentment or cynicism.
 acuity,A quick and penetrating intelligence.
 acumen,Shrewdness shown by keen insight.
+# try to avoid pushing duplicate code. It looks like this file is already at the root.

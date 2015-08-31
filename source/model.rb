@@ -1,9 +1,9 @@
-require_relative 'parser'
+require_relative 'parser' # I don't think we're using this in this file
 
 class Card
   attr_reader :term, :definition
   def initialize(args={})
-    @term = args[:term]
+    @term = args[:term] # set defaults. always a good habit to get into
     @definition = args[:definition]
   end
 end

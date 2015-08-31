@@ -27,4 +27,7 @@ class FlashcardView
   def review
     puts "Would you like to attempt the ones you got wrong again?"
   end
+
+  # this view class is missing a method that fetches user input.
+  
 end
